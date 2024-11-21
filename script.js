@@ -12,11 +12,13 @@ function revealImage(element) {
     const clickedDay = parseInt(element.textContent.trim(), 10);
     
     // Vérifie si le mois actuel est décembre (11 en JS)
+    /*
     if (currentMonth !== 11) {
         alert("Ce n'est pas encore décembre !😼");
         return; // Arrête l'exécution ici
     }
-
+    */
+    
     // Vérifie si le jour cliqué est supérieur au jour actuel
     if (clickedDay > currentDay) {
         alert("Sois patiente ! 😼");
