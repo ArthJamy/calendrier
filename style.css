@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #1a1a40;
+    background-image: url('BG-confetti-doodles.svg'); /* Remplacez par votre image */
+    background-repeat: repeat; /* Répète l'image horizontalement et verticalement */
+    background-size: auto; /* Maintient la taille d'origine de l'image */
+    background-position: top left; /* Positionne l'image dans le coin supérieur gauche */
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family : ChristmasCove-Free;
+    src: url(font/OTF/ChristmasCove-Free.otf);
+}
+
+h1 {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    color: #ffcc00;
+    font-family: ChristmasCove-Free;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20vh, 1fr)); /* Ajustement flexible */
+    gap: 3vh; /* Espacement entre les cases */
+    column-gap: 4vh;
+    padding: 2vh; 
+    justify-items: center; /* Centre les cases horizontalement */
+    align-items: center; /* Centre les cases verticalement */
+}
+
+.day {
+    position: relative;
+    width: 90%; /* Taille ajustée pour mieux s'adapter */
+    max-width: 20vh; /* Limite la largeur pour éviter le débordement */
+    height: auto;
+    aspect-ratio: 1; /* Assure que les cases restent carrées */
+    background-color: #e63946;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s, background-color 0.3s;
+    font-size: 150%; /* Taille ajustée du texte */
+    font-family: ChristmasCove-Free;
+    z-index: 999;
+}
+
+.day:hover {
+    transform: scale(1.1);
+    background-color: #ff9c32;
+    color: #e63946;
+    font-weight: bold;
+}
+
+
+.day img {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.day.active img {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hidden-content {
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:normal;
+}
+
+.day.active .hidden-content {
+    display: block;
+}
+
+/* Animation des flocons sur toute la page */
+.snowflake {
+    position: fixed;
+    top: -10%;
+    font-size: 20px;
+    color: #ffffff;
+    animation: fall 10s linear infinite;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1150px) {
+    .calendar {
+        grid-template-columns: repeat(auto-fit, minmax(30vh, 1fr)); /* Ajustement automatique */
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .day {
+
+        font-size: 150%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .day {
+
+        font-size: 120%;
+    }
+}
+
+/*agrandir image*/
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.lightbox img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+
+.lightbox .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
